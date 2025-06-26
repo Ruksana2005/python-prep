@@ -1,0 +1,255 @@
+##grouping anagrams
+def groupingAnagrams(words):
+  groups = [] 
+  while len(words) != 0 :
+    group = [words[0]]
+    for j in range(1, len(words)):
+      arr_0 = convert2Arr(words[0])
+      arr_j = convert2Arr(words[j])
+      if arr_0== arr_j :
+        group.append(words[j])
+    for word in group:
+      words.remove(word)
+    groups.append(group)
+  print(groups)
+  return 
+  
+  
+def convert2Arr( word ):
+  arr = [0] * 26
+  for ch in word :
+    arr[ord(ch) - 97] += 1
+  return arr 
+  
+words = ["eat", "tan", "elbow", "ate", 
+          "ant", "tea", "below"]
+groupingAnagrams(words)
+
+Output:
+
+[['eat', 'ate', 'tea'], ['tan', 'ant'], ['elbow', 'below']]
+
+
+#Find vowels
+def findvowels(s):
+    v=['a','e','i','o','u']
+    s=s.lower()
+    k=0
+    arr=[]
+    for i in range(len(s)):
+        if s[i] in v:
+            arr.append(i)
+            k+=1
+   
+    
+    return [k,arr]
+print(findvowels("hello Everyone"))
+
+output
+[6, [1, 4, 6, 8, 11, 13]]
+
+#the word with maximum vowels 
+def biggestvowel(arr):
+    v=['a','e','i','o','u']
+    a=[]
+    
+    for i in range(len(arr)):
+        arr[i]=arr[i].lower()
+        k=0
+        for j in range(len(arr[i])):
+            if arr[i][j] in v:
+                k+=1
+        a.append([k,arr[i]])
+    return max(a)
+print(biggestvowel(['entreprener','auspicious']))
+
+Output
+[6, 'auspicious']
+
+##recursion
+
+def fibonacci(n):
+    if n==0 or n==1:
+        return n
+    else:
+        return fibonacci(n-1)+fibonacci(n-2)
+print(fibonacci(10))
+OUtput
+55
+
+##sum of n numbers
+def sum(n):
+    if n==0 or n==1:
+        return n
+    else:
+        return sum(n-1)+n
+print(sum(3))
+
+output
+6
+
+
+#gcd with and without recursion
+def gcd1(a,b):
+    if a<b:
+        a,b=b,a
+    
+    while(b!=0):
+        r=a%b
+        a=b
+        b=r
+    return a
+def gcd2(a,b):
+    if b==0:
+        return a 
+    else:
+        if a<b:
+            a,b=b,a
+        r=a%b
+        return gcd2(b,r)
+print(gcd1(15,25))
+print(gcd2(15,25))
+
+output
+5
+5
+
+def sum1(n):
+  total = 0 
+  for i in range(n, 0, -1):
+    total = total + i 
+  return total 
+  
+def sum2(n):
+  if n ==0 :
+    return 0 
+  return n + sum2(n-1)
+  
+def factorial1(n):
+  if n == 0 :
+    return 1
+  res = 1
+  for i in range (2, n+1):
+    res = res * i
+  return res 
+  
+def factorial2(n):
+  if n ==0 :
+    return 1
+  else:
+    return n * factorial2(n-1)
+    
+def gcd1(a, b):
+  while b != 0 :
+    r = a %b 
+    a = b 
+    b = r 
+  return a 
+  
+def gcd2(a, b):
+  if b == 0 :
+    return a
+  r = a%b
+  return gcd2(b,r)
+  
+def sumOfDidigits(n, total =0):
+  while n != 0:
+    digit = n %10
+    total = total + digit 
+    n = n // 10 
+  return total
+
+def sumOfDidigits1(n, total =0):
+  if n ==0 :
+    return total
+  else :
+    return sumOfDidigits1(n //10, sum + n%10)
+  
+def revNumber(n, m=0):
+  while n !=0 :
+    m = m * 10 + n %10 
+    n = n // 10 
+  return m
+  
+def revNumber1(n, m =0):
+  if n == 0 :
+    return m 
+  return revNumber1(n // 10, m * 10 + n %10)
+  
+def isPalindrome(word):
+  left, right  = 0, len(word)-1
+  while left < right :
+    if word[left] != word[right]:
+      return False;
+    left, right  = left+1, right-1
+  return True 
+  
+def isPalindrome1(word, left, right):
+  if left >= right :
+    return True
+  elif word[left] != word[right]:
+      return False 
+  else :
+    return isPalindrome1(word, left+1, right-1)
+
+import math
+
+def isPrime(n, i =2):
+  if n == 1:
+    return False 
+  while i <= int(math.sqrt(n)) :
+    if n % i == 0:
+      return False 
+    i = i+1 
+  return True 
+
+def isPrime1(n, i = 2):
+  if n == 1 :
+    return False 
+  elif i > int(math.sqrt(n)) :
+    return True 
+  elif n %i == 0 :
+    return False 
+  else:
+    return isPrime1(n, i+1)
+    
+def d2b(n, binary =0, base = 1):
+  while n > 0:
+    binary = binary + (n%2) * base 
+    base = base * 10
+    n = n // 2 
+  return binary 
+  
+def d2b1(n, binary =0, base = 1):
+  if n ==0 :
+    return binary 
+  else :
+    return d2b1(n // 2,  binary + (n%2) * base,base * 10 )
+
+def b2d(binary, decimal = 0, base = 1):
+  while binary != 0 :
+    decimal = decimal + (binary % 10) * base 
+    base = base * 2
+    binary = binary // 10 
+  return decimal 
+    
+def b2d1(binary, decimal = 0, base = 1):
+  if binary == 0:
+    return decimal 
+  else :
+    return b2d1(binary//10,decimal+(binary % 10)*base,base*2)
+
+print(b2d(101010))
+print(b2d1(101010))
+
+  
+  
+
+
+
+
+
+
+
+
+
