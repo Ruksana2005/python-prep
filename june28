@@ -1,0 +1,288 @@
+##isomorphic
+
+def isIsomorphic(s1, s2):
+  if len(s1) != len(s2):
+    return False 
+  d12 = dict()
+  d21 = dict()
+  for i in range(len(s1)) :
+    ch1 = s1[i]
+    ch2 = s2[i]
+    if((ch1 in d12.keys() and d12.get(ch1) != ch2) or 
+       (ch2 in d21.keys() and d21.get(ch2) != ch1)):
+         return False 
+    else :
+      d12[ch1] = ch2
+      d21[ch2] = ch1
+  return True 
+  
+s1 = "abad"
+s2 = "pqps"
+print( isIsomorphic(s1, s2))
+
+output
+True
+
+##patterns
+n=5
+for i in range(1,n+1):
+    for j in range(1,i+1):
+        print(i,end=" ")
+    print()
+
+Output
+1 
+2 2 
+3 3 3 
+4 4 4 4 
+5 5 5 5 5 
+
+n=5
+for i in range(1,n+1):
+    for j in range(1,i+1):
+        print(chr(96+(i)),end=" ")
+    print()
+output
+a 
+b b 
+c c c 
+d d d d 
+e e e e e 
+
+n=5
+k=1
+for i in range(1,n+1):
+    for j in range(1,i+1):
+        print(k,end=" ")
+        k+=1
+    print()
+1 
+2 3 
+4 5 6 
+7 8 9 10 
+11 12 13 14 15 
+
+
+n=4
+l=1
+for i in range(1,n+1):
+    for j in range(n,i,-1):
+        print(" ",end=" ")
+    for k in range(1,i+1):
+        print(l,end=" ")
+        l+=1
+    print()
+
+      1 
+    2 3 
+  4 5 6 
+7 8 9 10 
+
+def pattern(n):
+  for i in range(1, n+1):
+    for k in range(1, n-i+1):
+      print(" ", end = "")
+    # for controlling printing of characters 
+    for j in range(1, i+1):
+      print("* ", end = "")
+      
+    print()
+  return 
+
+pattern(5)
+
+
+Output:
+
+    * 
+   * * 
+  * * * 
+ * * * * 
+* * * * *
+
+
+#inverted triangle
+def pattern(n):
+  # for controlling lines 
+  for i in range(1, n+1):
+    for k in range(1, i):
+      print(" ", end = "")
+    for j in range(n-(i-1), 0, -1):
+      print("* ", end= "")
+    print()
+  return 
+
+pattern(5)
+
+Output:
+
+* * * * * 
+ * * * * 
+  * * * 
+   * * 
+    * 
+
+
+
+def pattern(n):
+  digit = 1
+  for i in range(1, n+1):
+    for k in range(1, n+1-i):
+      print(" ", end = "")
+    for j in range(1, i+1):
+      print(i, end = " ")
+    print()
+      
+    
+  m = n-1
+  for i in range(1, m+1):
+    for k in range(1, i+1):
+      print(" ", end = "")
+    for j in range(m-(i-1), 0, -1):
+      print(m-(i-1), end= " ")
+    print()
+  return 
+
+pattern(5)
+
+   1 
+   2 2 
+  3 3 3 
+ 4 4 4 4 
+5 5 5 5 5 
+ 4 4 4 4 
+  3 3 3 
+   2 2 
+    1
+
+n=7
+for i in range(1,n+1):
+    if i==1 or i==n:
+        for j in range(1,n+1):
+            print("*",end=" ")
+    else:
+        for k in range(1):
+            print("*",end=" ")
+        for l in range(n-2):
+            print(" ",end=" ")
+        for k in range(1):
+            print("*",end=" ")
+            
+    print()
+
+* * * * * * * 
+*           * 
+*           * 
+*           * 
+*           * 
+*           * 
+* * * * * * * 
+
+
+def pattern(n):
+  for i in range(1, n+1):
+    for j in range(1, n+1):
+      if i == 1 or i == n :
+        print("*", end = " ")
+      else :
+        if j == i :
+          print("*", end = " ")
+        else :
+          print(" ", end = " ")
+    print()
+    
+pattern(10)
+
+
+Output:
+
+* * * * * * * * * * 
+  *                 
+    *               
+      *             
+        *           
+          *         
+            *       
+              *     
+                *   
+* * * * * * * * * * 
+
+def pattern(n):
+  for i in range(1, n+1):
+    for j in range(1, n+1):
+      if i == 1 or i == n :
+        print("*", end = " ")
+      else :
+        if j == (n-i+1) :
+          print("*", end = " ")
+        else :
+          print(" ", end = " ")
+    print()
+    
+pattern(5)
+
+* * * * * 
+      *   
+    *     
+  *       
+* * * * * 
+
+
+ season tickets
+# far from office.. metro to reach off.. off only on imp days.. 
+# buy ticket regularly or weekly or monthly(30 days) once... daily ticket 2 rupees, weekly 7, monthly 15
+# help the SE to spend in on tickets
+
+travelDays=[1,4,6,7,8,20]
+prices=[2,7,15]
+n=travelDays[-1]
+def seasonTickets(day=1):
+  if day>n:
+    return 0 
+  elif day not in travelDays:
+    return seasonTickets(day+1)
+  else:
+    opt1=prices[0]+seasonTickets(day+1)
+    opt2=prices[1]+seasonTickets(day+7)
+    opt3=prices[2]+seasonTickets(day+30)
+  return min(opt1,opt2, opt3)
+print(seasonTickets())
+
+# o/p: 2+7+2=11
+
+##Maximum of the matrix
+import numpy as np
+def maxSizeOfOnesMatrix(matrix):
+  m, n = len(matrix), len(matrix[0])
+  sol = [[0 for j in range(n)] for i in range(m) ]
+  for j in range(n):
+    sol[0][j] = matrix[0][j]
+  for i in range(1, m):
+    sol[i][0] = matrix[i][0]
+  for i in range(1, m):
+    for j in range(1, n):
+      sol[i][j] = min(sol[i-1][j], sol[i][j-1], sol[i-1][j-1]) + matrix[i][j]
+  maxSize = 0
+  for i in range(m):
+    rowMax = max(sol[i]) 
+    maxSize = max(maxSize, rowMax)
+      
+  print(np.matrix(sol))
+  return maxSize 
+matrix = [[0,1,0,1,0],
+          [1,1,1,1,1],
+          [0,1,1,1,0],
+          [1,1,1,1,0],
+          [1,1,1,1,1,]]
+print(maxSizeOfOnesMatrix(matrix))
+
+Output:
+
+[[0 1 0 1 0]
+ [1 1 1 1 1]
+ [0 1 2 2 1]
+ [1 1 2 3 1]
+ [1 2 2 3 2]]
+3
+
+ In Recursion(multiple times) ,we solve the same problem for multiple times where as in dynamic programming solves the problem at a time(only once)
