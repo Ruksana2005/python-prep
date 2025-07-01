@@ -1,0 +1,190 @@
+##min coins required to pay the amount
+coins = [2,5]
+def fun( amount):
+  if amount == 0 :
+    return 0
+  elif amount < 0 :
+    return float("inf")
+  else :
+    minCoins = float("inf")
+    for coin in coins :
+      Coins = 1 + fun(amount - coin)
+      if Coins != float("inf"):
+        minCoins = min (minCoins, Coins)
+    return minCoins 
+
+amount = 5
+minCoins = fun(amount)
+print( minCoins if minCoins != float("inf") else -1 )
+
+output
+1
+
+##maximum cost by selling the rod
+1m=1rs,2m=5rs,3m=8rs...
+prices = [1, 5, 8, 9, 10, 17, 17, 20]
+def fun(n):
+  if n ==0 :
+    return 0 
+  maxProfit = 0 
+  for length in range(1, n+1):
+    maxProfit = max(maxProfit, prices[length] + fun(n-length))
+  return maxProfit
+  
+
+prices.insert(0,0)
+print(fun(8))
+
+output
+22
+
+ ##Dynamic programming
+prices = [1, 5, 8, 9, 10, 17, 17, 20]
+def fun(n):
+  if n ==0 :
+    return 0 
+  maxProfit = 0 
+  for length in range(1, n+1):
+    maxProfit = max(maxProfit, prices[length] + fun(n-length))
+  return maxProfit
+  
+def fun_dp(n):
+  dp = [0 for i in range(n+1)]
+  for i in range(1, n+1):
+    maxProfit = 0
+    for length in range(1, len(prices) + 1):
+      if i - length >= 0 :
+        profit = prices[length] + dp[i -length]
+        if profit > maxProfit :
+          maxProfit = profit
+    dp[i] = maxProfit 
+  for profit in dp:
+    print(profit, end = " ")
+prices.insert(0,0)
+print()
+fun_dp(8)
+
+Output:
+0 1 5 8 10 13 17 18 22
+
+#pascal triangle
+import math
+def pascal (n):
+  for i in range(0, n):
+    for k in range(n-i):
+      print(end = " ")
+    for j in range(0, i+1):
+      term = math.factorial(i) // (math.factorial(j) * math.factorial(i-j))   ## ncr=n!/r!*(n-r)!
+      print(term, end = " ")
+    print()
+pascal(5)
+
+Output:
+
+     1 
+    1 1 
+   1 2 1 
+  1 3 3 1 
+ 1 4 6 4 1 
+
+##longest subsequence
+s1 = "yahoo"
+s2 = "google"      
+m = len(s1)
+n = len(s2)
+def fun(i, j):
+  if i == m or j == n :
+    return 0
+  elif s1[i] == s2[j] :
+    return 1 + fun(i+1, j+1)
+  else :
+    return max( fun(i+1, j), fun(i, j+1))
+    
+n = fun(0, 0)
+print(n)
+
+Output:
+2
+
+s1 = "aruna"
+s2 = "archana"
+
+output
+4
+
+##longest supersequence
+import numpy as np
+s1 = "abc"
+s2 = "acb"
+m = len(s1)
+n = len(s2)
+     
+def gun():
+  dp = [ [ 0 for j in range(n+1)] for i in range(m+1) ]
+  for i in range(1, m+1):
+    for j in range(1, n+1):
+      if s1[i-1] == s2[j-1] :
+        dp[i][j] = 1 + dp[i-1][j-1]
+      else :
+        dp[i][j] = max( dp[i-1][j], dp[i][j-1] )
+      
+  print(np.matrix(dp))
+  return 
+gun()
+
+[[0 0 0 0]
+ [0 1 1 1]
+ [0 1 1 2]
+ [0 1 2 2]]
+
+
+#length of longest polindromic subsequence
+##bruteforce
+def fun(s,n):
+  maxLen = 1
+  for i in range(n):
+    for j in range(i+1, n):
+      substr = s[i:j+1]
+      if substr==substr[::-1] :
+        length = len(substr)
+        if length > maxLen :
+          maxLen = length
+  return maxLen 
+
+s = "banana"
+n = len(s)
+print(fun(s,n))
+
+output
+5
+
+##recursion
+def isPalindrome(s):
+  if s == s[::-1] :
+    return True 
+  else :
+    return False
+def funR(s, n, left, right):
+  if left > right :
+    return 0
+  elif left == right :
+    return 1
+  elif s[left] == s[right]:
+    return 2 + funR(s, n, left+1, right-1)
+  else :
+    opt1 =  funR(s, n, left+1, right)
+    opt2 = funR(s, n, left, right-1)
+    return max(opt1, opt2)
+    
+s = "geekeegks"
+n = len(s)
+print(funR(s,n,0,n-1))
+
+output
+7
+
+
+
+
+
+
