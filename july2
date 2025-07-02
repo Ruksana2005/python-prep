@@ -1,0 +1,173 @@
+##issubsequence
+def isSubSequence(s1, s2):
+  n1, n2  = len(s1), len(s2)
+  k, i, j = 0, 0, 0
+  while i < n1 and j < n2:
+    if s1[i] == s2[j]:
+      i, j, k = i+1, j+1, k+1
+    else :
+      j = j+1 
+  if k == n1 :
+    return True 
+  else :
+    return False  
+s1 = "go"
+s2 = "gogel"  
+
+print(isSubSequence(s1, s2))
+
+output
+True
+
+s1 = "god"  
+s2 = "google"
+(ans : false becoz d is not in s2 in sequencial manner)
+
+
+
+##longest polindromic subsequence
+import numpy as np
+def fun(s):
+  n = len(s)
+  dp = [[0 for j in range(n+1)] for i in range(n+1)]
+  for i in range(n):
+    dp[i][i] = 1 
+    
+  for length in range(1, n+1):
+    for i in range(n-length +1):
+      j = i + length -1 
+      if s[i] == s[j]:
+        if length == 2 :
+          dp[i][j] = 2
+        else :
+          dp[i][j] = 2 + dp[i+1][j-1]
+      else:
+        dp[i][j] = max(dp[i+1][j], dp[i][j-1])
+  return dp[0][n-1]
+        
+      
+  print(np.matrix(dp))
+  return 0 
+  
+print(fun("google"))
+
+output
+4(goog)
+
+##seasonal tickets
+travel_days = [1,3,4,5,6,9]
+prices = [2,7,15]
+n = 9
+
+def minCost(day = 0):
+  dp = [0 for i in range(n+1)]
+  for day in range(n+1):
+    if day not in travel_days :
+      dp[day] = dp[day-1] if day-1 >= 0  else 0 
+    else :
+      opt1 = prices[0] +( dp[day-1] if day-1 >=0 else 0 )
+      opt2 = prices[1] +( dp[day-7] if day-7 >= 0 else 0)
+      opt3 = prices[2] +( dp[day-30] if day -30 >=0 else 0)
+      dp[day] = min(opt1, opt2, opt3)
+  print(dp)
+  return dp[n]
+  
+print(minCost())
+
+Output:
+[1, 3, 4, 5, 6, 9]
+[0, 2, 2, 4, 6, 7, 7, 7, 7, 9]
+9
+
+def rainTrapping(arr):
+  total = 0
+  n = len(arr)
+  for i in range(n):
+    left_max = arr[i]
+    for j in range(i):
+      if arr[j] > left_max:
+        left_max = arr[j]
+    right_max = arr[i]
+    for j in range(i+1, n):
+      if arr[j] > right_max :
+        right_max = arr[j]
+    total = total + min(left_max, right_max) - arr[i]
+    print(left_max, right_max, arr[i], total)
+  return total 
+
+arr = [2,0,3,0,1,0,5]
+print(rainTrapping(arr))
+
+Output:
+
+2 5 2 0
+2 5 0 2
+3 5 3 2
+3 5 0 5
+3 5 1 7
+3 5 0 10
+5 5 5 10
+10
+
+
+##linkedlist
+class Node:
+  def __init__ (self, data):
+    self.data = data
+    self.next = None
+    
+def addNodeAtEnd(head, data):
+  newNode = Node(data)
+  if head == None :
+    head = newNode
+  else: 
+    curr = head 
+    while curr.next != None :
+      curr = curr.next 
+    curr.next = newNode
+  return head
+  
+def showDataList(head):
+  curr = head 
+  while curr != None :
+    print(curr.data, end = " ")
+    curr = curr.next
+  return
+
+def countNodes(head):
+  n =0
+  curr = head 
+  while curr != None :
+    n = n+1
+    curr = curr.next
+  return n
+  
+def addNodeAtHeadEnd(head, data):
+  newNode = Node(data)
+  newNode.next = head
+  head = newNode
+  return head
+def search(self,key):
+  curr=head
+  while(curr!=None):
+    if curr.data==key:
+      return "key value is found"
+    curr=curr.next
+  return None
+head = None 
+head = addNodeAtEnd(head, 100)
+addNodeAtEnd(head, 200)
+addNodeAtEnd(head, 150)
+addNodeAtEnd(head, 175)
+head = addNodeAtHeadEnd(head, 90)
+showDataList(head)
+print()
+print("Number of nodes = ", countNodes(head))
+print("Searching the node : ",search(head,150))
+
+
+output
+90 100 200 150 175 
+Number of nodes =  5
+Searching the node :  key value is found
+
