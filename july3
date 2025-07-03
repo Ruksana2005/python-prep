@@ -1,0 +1,296 @@
+https://onecompiler.com/users/42bbebgff/codes   all codes of tv rao sir
+https://programmingbydoing.com/ practice codes
+##bubble sort
+def fun(arr):
+  start = 0 
+  end = len(arr) -1 
+  Sorted = False 
+  nIter =0
+  while not Sorted :
+    swapped = False 
+    for i in range(start, end):
+      if arr[i] > arr[i+1]:
+        arr[i], arr[i+1] = arr[i+1], arr[i]
+        swapped = True 
+    nIter = nIter +1   
+    if not swapped :
+      Sorted = True 
+  print(nIter)
+  return arr
+
+arr = [10,9,8,7,6,5,4,3,2,1]
+print(fun(arr))
+
+
+Output:
+
+10
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+##linkedlist operations
+class Node:
+  def __init__ (self, data):
+    self.data = data
+    self.next = None
+    
+def addNodeAtEnd(head, data):
+  newNode = Node(data)
+  if head == None :
+    head = newNode
+  else: 
+    curr = head 
+    while curr.next != None :
+      curr = curr.next 
+    curr.next = newNode
+  return head
+  
+def showDataList(head):
+  curr = head 
+  while curr != None :
+    print(curr.data, end = " ")
+    curr = curr.next
+  return
+
+def countNodes(head):
+  n =0
+  curr = head 
+  while curr != None :
+    n = n+1
+    curr = curr.next
+  return n
+  
+def addNodeAtHeadEnd(head, data):
+  newNode = Node(data)
+  newNode.next = head
+  head = newNode
+  return head
+
+def searchForNode(head, key):
+  curr = head 
+  while curr != None and curr.data != key :
+    curr = curr.next 
+  return curr if curr != None else None
+  
+def insertAfterNode(head, data, data_to_be_inserted):
+  newNode = Node(data_to_be_inserted)
+  node = searchForNode(head, data)
+  if node == None :
+    return 
+  else :
+    temp = node.next
+    node.next = newNode
+    newNode.next = temp
+    return 
+
+def insertBeforeNode(head, data, data_to_be_inserted):
+  newNode = Node(data_to_be_inserted)
+  prev, curr  = None, head 
+  while curr != None and curr.data != data :
+    prev = curr
+    curr = curr.next 
+  if curr == None :
+    return 
+  else :
+    prev.next = newNode 
+    newNode.next = curr
+  return 
+
+def sortList(head):
+  Sorted = False 
+  while not Sorted :
+    curr = head 
+    swapped = False 
+    while curr.next != None:
+      if curr.data > curr.next.data :
+        curr.data, curr.next.data = curr.next.data, curr.data
+        swapped = True 
+      curr = curr.next
+    if not swapped :
+      Sorted = True 
+  return 
+def deleteHeadNode(head):
+  if head == None :
+    return None 
+  else :
+    head = head.next 
+    return head
+    
+def deleteTailNode(head):
+  if head == None :
+    return 
+  else :
+    prev, curr  = None, head 
+    while curr.next != None:
+      prev = curr
+      curr = curr.next
+    prev.next = None
+    return 
+def deleteAnyNode(head, data):
+  prev, curr = None, head 
+  while curr != None and curr.data != data :
+    prev, curr = curr, curr.next 
+  if curr == None :
+    return None 
+  else :
+    prev.next = curr.next 
+    return 
+  
+def ReverseList(head):
+  prev, curr = None, head 
+  while curr != None :
+    Next = curr.next 
+    curr.next = prev 
+    prev = curr
+    curr = Next
+  return prev 
+  
+  
+head = None 
+head = addNodeAtEnd(head, 100)
+addNodeAtEnd(head, 200)
+addNodeAtEnd(head, 150)
+addNodeAtEnd(head, 175)
+head = addNodeAtHeadEnd(head, 90)
+addNodeAtEnd(head, 25)
+addNodeAtEnd(head, 50)
+insertAfterNode(head, 150, 190)
+insertAfterNode(head, 25, 65)
+insertBeforeNode(head, 190, 220)
+showDataList(head)
+sortList(head)
+print()
+showDataList(head)
+head = deleteHeadNode(head)
+print()
+showDataList(head)
+deleteTailNode(head)
+print()
+showDataList(head)
+deleteAnyNode(head, 175)
+print()
+showDataList(head)
+head = ReverseList(head)
+print()
+showDataList(head)
+
+Output:
+
+90 100 200 150 220 190 175 25 65 50 
+25 50 65 90 100 150 175 190 200 220 
+50 65 90 100 150 175 190 200 220 
+50 65 90 100 150 175 190 200 
+50 65 90 100 150 190 200 
+200 190 150 100 90 65 50 
+
+##strings
+#DISTANCE BETWEEN STRINGS PROBLEMS
+#GIVEN 2 TWO STRINGS S1,S2 RAM AND SEETA FIND OUT THE SORTED DISTANCE BETWEEN THEM IF THEY ARE NOT THERE RETURN -1 IF THEY ARE PRESENT THEN RETURN 
+#strings=["first","second","three","fourth","fifth","first","sixth"]
+def getMinDist(strings, s1, s2):
+  minDist = float("inf")
+  pos1, pos2  = 0, 0
+  if s1 not in strings or s2 not in strings:
+    return -1
+  for i in range(len(strings)):
+    if strings[i] == s1 :
+      pos1 =i
+    if strings[i] == s2:
+      pos2 = i
+    if pos1 != pos2 :
+      dist = abs(pos1 - pos2)
+      minDist = min(minDist, dist)
+  return minDist
+strings = input().split(" ")
+s1 = "fourth"
+s2 = "first"
+print(getMinDist(strings, s1, s2))
+
+Input
+first second third fourth fifth first sixth seventh fourth first
+STDIN
+Output:
+1
+
+##s1="tan" and s2="ant".no.of rotations required to convert s1 into s2(ans : 1)
+def fun(s1,s2):
+  totalDist=0
+  for i in range(len(s1)):
+    diff=ord(s2[i])-ord(s1[i])
+    if diff<0:
+      diff=diff+26
+    totalDist=totalDist+diff
+  return totalDist
+
+s1="wxyz"
+s2="abcd"
+print(fun(s1,s2))
+
+output
+16
+
+s1="abcd"
+s2="wxyz"
+
+output
+88
+
+ncr(reducing the time complexity)
+n = 9
+r = 5
+prod = 1 
+for i in range (r-1):
+  prod = prod * (n -i) / (r-1-i)
+print(prod)
+
+Output
+126.0
+
+##maximum candies
+def getCandies(ranks):
+  n = len(ranks)
+  l2r = [ 1 for i in range(n)]
+  r2l = [ 1 for i in range(n)]
+  candies = [0 for i in range(n)]
+  for i in range(1, n):
+    if ranks[i] > ranks[i-1] :
+      l2r[i] = l2r[i-1] +1 
+  for i in range(n-2, -1, -1):
+    if ranks[i] > ranks[i+1]:
+      r2l[i] = 1 + r2l[i+1]
+  total = 0
+  for i in range(n):
+    candies[i] = max ( l2r[i], r2l[i])
+    total = total + candies[i]
+  return total 
+    
+ranks = [15,40,32,12,17,23]
+print(getCandies(ranks))
+
+output
+12
+
+ranks=[1,0,2]
+output
+5
+
+##removing duplicates from a list in the same list dont create extra list,dict or set
+def removingDuplicates(a):
+  i, j  = 0, 0
+  while i < len(a) :
+    if a[j] != a[i]:
+      j = j + 1
+      a[j] = a[i]
+    i = i+ 1
+  return j 
+
+arr = [1,1,2,2,2,2,4,4,4,4,4,6,6,6,6,8,8,8,8,9]
+j = removingDuplicates(arr)
+for i in range(j+1):
+  print(arr[i], end = " ")
+
+
+Output:
+
+1 2 4 6 8 9 
+
+
