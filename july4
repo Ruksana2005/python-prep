@@ -1,0 +1,178 @@
+#Remove k digits from a number to convert it into smallest number
+def removeKDigits(n, k):
+  ns = str(n)
+ 
+  stack = []
+  for ch in ns:
+    digit = int(ch)
+    while len(stack) != 0 and digit <= stack[-1] and k > 0 :
+      stack.pop()
+      k = k-1
+    stack.append(digit)
+    
+  if k > 0 :
+    for i in range(k):
+      stack.pop()
+   
+  s = ""
+  while stack :
+    s = str(stack.pop() ) + s 
+  
+  return int(s)
+
+n = int( input() )
+k = int( input() )
+print(n,k)
+print(removeKDigits(n, k))
+
+output
+12345 3
+12
+
+##circular linked list
+class Node :
+  def __init__ (self, data):
+    self.data = data 
+    self.next = None
+def addNode(head, data):
+  newNode = Node(data)
+  if head == None :
+    head = newNode 
+    head.next = head
+  else :
+    curr = head 
+    while curr.next != head:
+      curr = curr.next 
+    curr.next = newNode 
+    newNode.next = head 
+  return head 
+  
+def printNodes (head):
+  if head == None :
+    return 
+  curr = head 
+  while curr.next != head :
+    print(curr.data )
+    curr = curr.next
+  
+  print(curr.data)
+  return 
+head = None 
+head = addNode(head, 100)
+addNode(head, 200)
+addNode(head, 300)
+printNodes(head)
+
+Output:
+100
+200
+300   
+
+##doubly linked list
+class Node :
+  def __init__ (self, data):
+    self.data = data 
+    self.prev = None 
+    self.next = None
+    
+def addNode(head, data):
+  newNode = Node(data)
+  if head == None :
+    head = newNode 
+  else :
+    curr = head 
+    while curr.next != None:
+      curr = curr.next 
+    curr.next = newNode 
+    newNode.prev = curr 
+  return head
+
+def addAtHeadEnd(head, data):
+  newNode = Node(data)
+  newNode.next = head 
+  head.prev = newNode 
+  head = newNode
+  return head
+  
+def printNodes (head):
+  if head == None :
+    return 
+  curr = head 
+  while curr != None :
+    print(curr.data, end = " " )
+    curr = curr.next 
+  return 
+
+def insertBeforeNode(head, data, key ):
+  newNode = Node(key)
+  curr = head 
+  while(curr != None and curr.data != data) :
+    curr = curr.next 
+  if curr == None :
+    return 
+  else :
+    newNode.prev = curr.prev
+    curr.prev.next = newNode 
+    newNode.next = curr
+    curr.prev = newNode
+    
+  return 
+
+def insertAfterNode(head, data, key ):
+  newNode = Node(key)
+  curr = head 
+  while(curr != None and curr.data != data) :
+    curr = curr.next 
+  if curr == None :
+    return 
+  else :
+    newNode.prev = curr
+    newNode.next = curr.next 
+    curr.next.prev = newNode 
+    curr.next = newNode
+    
+    
+  return
+ 
+    
+head = None 
+head = addNode(head, 100)
+addNode(head, 200)
+addNode(head, 300)
+addNode(head, 100)
+addNode(head, 150)
+addNode(head, 175)
+addNode(head, 95)
+addNode(head, 125)
+addNode(head, 250)
+head = addAtHeadEnd(head, 25)
+insertBeforeNode(head,100, 110 )
+insertBeforeNode(head, 110, 45)
+
+insertAfterNode(head,100, 120 )
+insertAfterNode(head, 120,150 )
+printNodes(head)
+    
+Output:
+
+25 45 110 100 120 150 200 300 100 150 175 95 125 250
+
+##kedane's algorithm(maximum sum of subarray)
+
+def maxSumSubArray(arr):
+  localSum=0
+  GlobalSum=0
+  for number in arr:
+    localSum=max(localSum+number,number)
+    GlobalSum=max(GlobalSum,localSum)
+  return GlobalSum
+arr=[4,-3,2,-1,6,8,-5]
+print(maxSumSubArray(arr))
+
+output
+16
+subarray=[4,-3,2,-1,6,8]
+
+  
+    
+    
