@@ -1,0 +1,342 @@
+##binary search trees
+class Node:
+  def __init__ (self, data):
+    self.data = data 
+    self.left = None 
+    self.right = None
+    
+def addNode(root, data):
+  newNode = Node(data)
+  if root == None:
+    root = newNode 
+  else :
+    if data < root.data :
+      root.left = addNode(root.left, data)
+    else :
+      root.right = addNode(root.right, data)
+  return root
+def preOrder(root):
+  if root == None :
+    return
+  print(root.data,end=" ")
+  preOrder(root.left)
+  preOrder(root.right)
+def inOrder(root):
+  if root == None :
+    return
+  inOrder(root.left)
+  print(root.data,end=" ")
+  
+  inOrder(root.right)
+def postOrder(root):
+  if root == None :
+    return
+  postOrder(root.left)
+  postOrder(root.right)
+  print(root.data,end=" ")
+
+def dft(root):
+  stack = []
+  stack.append(root)
+  while len(stack) != 0:
+    curr = stack.pop()
+    print(curr.data, end =  " ")
+    
+    if curr.right != None :
+      stack.append(curr.right)
+    if curr.left != None :
+      stack.append(curr.left)
+  return    
+
+def bft(root):
+  queue = []
+  queue.insert(0,root)
+  while len(queue) != 0:
+    curr = queue.pop()
+    print(curr.data, end =  " ")
+    if curr.left != None :
+      queue.insert(0,curr.left)
+    if curr.right != None :
+      queue.insert(0, curr.right)
+  return
+def countNodes(root):
+  if root == None :
+    return 0 
+  else :
+    return 1 + countNodes(root.left) + countNodes(root.right)  
+def maxHeight(root):
+  if root == None :
+    return 0 
+  else :
+    return 1 + max(maxHeight(root.left),maxHeight(root.right))
+def reverseTree(root):
+  if root is None :
+    return 
+  #swap left child address with right child address
+  root.left, root.right  = root.right, root.left
+  # reverse left subtree
+  reverseTree(root.left)
+  # rverse right subtree
+  reverseTree(root.right)
+  return
+root = None 
+root = addNode(root, 100)
+addNode(root, 90)
+addNode(root, 110)
+addNode(root, 85)
+addNode(root, 95)
+addNode(root, 105)
+addNode(root, 115)
+addNode(root,80)
+print("Preorder Traversal:")
+preOrder(root)
+print("\n")
+print("Inorder Traversal:")
+inOrder(root)
+print("\n")
+print("Postorder Traversal:")
+postOrder(root)
+print("\n")
+print("DFS Traversal:")
+dft(root)
+print("\n")
+print("BFS Traversal:")
+bft(root)
+print("\n")
+print("No.of nodes in the tree:",countNodes(root))
+
+print("Maximum height of the tree(starts with 1) : ",maxHeight(root))
+
+print("After reversing the tree : ",)
+reverseTree(root)
+bft(root)
+
+output
+Preorder Traversal:
+100 90 85 80 95 110 105 115 
+
+Inorder Traversal:
+80 85 90 95 100 105 110 115 
+
+Postorder Traversal:
+80 85 95 90 105 115 110 100 
+
+DFS Traversal:
+100 90 85 80 95 110 105 115 
+
+BFS Traversal:
+100 90 110 85 95 105 115 80 
+
+No.of nodes in the tree: 8
+Maximum height of the tree(starts with 1) :  4
+After reversing the tree : 
+100 110 90 115 105 95 85 80 
+
+
+
+##sir code (https://onecompiler.com/python/43pscx9rd)
+class Node:
+  def __init__ (self, data):
+    self.data = data 
+    self.left = None 
+    self.right = None
+    
+def addNode(root, data):
+  newNode = Node(data)
+  if root == None:
+    root = newNode 
+  else :
+    if data < root.data :
+      root.left = addNode(root.left, data)
+    else :
+      root.right = addNode(root.right, data)
+  return root
+  
+def preOrder(root):
+  if root == None :
+    return
+  print(root.data, end = " ")
+  preOrder(root.left)
+  preOrder(root.right)
+  return 
+  
+def inOrder(root):
+  if root == None :
+    return
+  inOrder(root.left)
+  print(root.data, end = " ")
+  inOrder(root.right)
+  return 
+
+def postOrder(root):
+  if root == None :
+    return
+  postOrder(root.left)
+  postOrder(root.right)
+  print(root.data, end = " ")
+  return
+
+def dft(root):
+  stack = []
+  stack.append(root)
+  while len(stack) != 0:
+    curr = stack.pop()
+    print(curr.data, end =  " ")
+    if curr.right != None :
+      stack.append(curr.right)
+    if curr.left != None :
+      stack.append(curr.left)
+  return
+
+def bft(root):
+  queue = []
+  queue.insert(0,root)
+  while len(queue) != 0:
+    curr = queue.pop()
+    print(curr.data, end =  " ")
+    if curr.left != None :
+      queue.insert(0,curr.left)
+    if curr.right != None :
+      queue.insert(0, curr.right)
+  return
+      
+def countNodes(root):
+  if root == None :
+    return 0 
+  else :
+    return 1 + countNodes(root.left) + countNodes(root.right)
+    
+def maxHeight(root):
+  if root == None :
+    return 0 
+  else :
+    return 1 + max(maxHeight(root.left),maxHeight(root.right))
+
+def isBalanced( root : Node ) ->bool :
+  if root is None :
+    return True 
+  else :
+    diff = abs(maxHeight(root.left) - maxHeight(root.right))
+    return diff <=1 and isBalanced(root.left) and isBalanced(root.right)
+    
+
+def reverseTree(root):
+  if root is None :
+    return 
+  #swap left child address with right child address
+  root.left, root.right  = root.right, root.left
+  # reverse left subtree
+  reverseTree(root.left)
+  # rverse right subtree
+  reverseTree(root.right)
+  return
+def deleteNode(root:Node, key:int) -> Node :
+  if root is None :
+    return None 
+  parent = None
+  curr = root 
+  while curr != None and key != curr.data :
+    parent = curr
+    if key < curr.data :
+      curr = curr.left
+    else :
+      curr = curr.right
+  if curr == None :
+    return None;
+  if(curr.left == None and curr.right == None):
+    if curr == parent.left :
+      parent.left = None 
+    else :
+      parent.right = None
+  elif (curr.left != None and curr.right != None):
+    replacer = root.right
+    replacer_parent = None
+    while replacer.left != None :
+      replacer_parent = replacer
+      replacer = replacer.left
+    curr.data = replacer.data
+    if replacer is replacer_parent.left :
+      replacer_parent.left = None 
+    else :
+      replacer_parent.right = None 
+  else :
+    kid = curr.left if curr.left != None else curr.right 
+    if parent.left is curr :
+      parent.left = kid
+    else :
+      parent.right = kid 
+  return root 
+def minvalue(root):
+    if root is None:
+        return None
+    else:
+        curr=root
+        while(curr.left!=None):
+            curr=curr.left
+    return curr.data
+def maxvalue(root):
+    if root is None:
+        return None
+    else:
+        curr=root
+        while(curr.right!=None):
+            curr=curr.right
+    return curr.data    
+    
+  
+root = None 
+root = addNode(root, 100)
+addNode(root, 90)
+addNode(root, 110)
+addNode(root, 85)
+addNode(root, 95)
+addNode(root, 115)
+addNode(root, 105)
+addNode(root, 80)
+#addNode(root, 75)
+
+print("preorder : ",preOrder(root))
+print("inorder : ",inOrder(root))
+print()
+print("postorder : ",postOrder(root))
+print()
+print("DFS : ",dft(root))
+print()
+print("BFS : ",bft(root))
+print()
+print("No.of nodes : ",countNodes(root))
+print()
+print("Maximum height of the bst : ",maxHeight(root))
+#reverseTree(root)
+print()
+#bft(root)
+print("The tree is balanced or not : ",isBalanced(root))
+print("After deleting the node 10,the bst tree\n")
+deleteNode(root, 10)
+inOrder(root)
+print()
+print("maximum value :",maxvalue(root))
+print("minimum value :",minvalue(root))
+
+
+Output:
+
+100 90 85 80 95 110 105 115 preorder :  None
+80 85 90 95 100 105 110 115 inorder :  None
+
+80 85 95 90 105 115 110 100 postorder :  None
+
+100 90 85 80 95 110 105 115 DFS :  None
+
+100 90 110 85 95 105 115 80 BFS :  None
+
+No.of nodes :  8
+
+Maximum height of the bst :  4
+
+The tree is balanced or not :  True
+After deleting the node 10,the bst tree
+
+80 85 90 95 100 105 110 115 
+maximum value : 115
+minimum value : 80
