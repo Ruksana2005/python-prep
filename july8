@@ -1,0 +1,48 @@
+#find no of digits in a number and print the remainder of the number%no.of digits in it
+def count(n):
+  return len(str(n))
+n1=782
+c1=count(n1)
+print(n1%c1)
+n2=21340
+c2=count(n2)
+print(n2%c2)
+
+output
+2
+0
+
+##prime factors of a  given number(no repetition)
+import math
+def isprime(n):
+  if n>9:
+    if n%2==0 or n%3==0 or n%4==0 or n%5==0 or n%6==0 or n%7==0 or n%8==0 or n%9==0:
+      return False
+  else:
+    for i in range(2,int(math.sqrt(n))+1):
+      if n%i==0:
+        return False
+  return True
+num=98
+l=[]
+for i in range(2,num+1):
+  if num%i==0 and isprime(i):
+    l.append(i)
+print(l)
+
+output
+[2,7] -- 98
+[3,5]  --15
+[97]   --97
+
+##check if s2 is a substring of s1 if yes then print index of starting position of s2 in s1 else return -1
+s1="rudrama devi"
+s2="drama"
+if s2 in s1:
+    print(s1.index(s2))
+else:
+    print("-1")
+
+output
+2
+
