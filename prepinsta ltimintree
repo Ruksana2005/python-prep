@@ -1,0 +1,63 @@
+def cost(n,arr1,arr2):
+    s=0
+    for i in range(n):
+        s=s+arr1[i]-arr2[i]
+    if s<0:
+        return abs(s)
+    else:
+        return 0
+print(cost(3,[3,4,2],[5,3,4]))
+print(cost(4,[5,3,4,2],[3,2,4,1]))
+print(cost(3,[1,1,1],[4,5,6]))
+
+output
+3
+0
+12
+
+
+def airportluggage(n,arr,w):
+    c=0
+    for i in range(len(arr)):
+        if arr[i]>w:
+            c+=2
+        else:
+            c+=1
+    return c
+print(airportluggage(4,[1,2,3,4],3))
+print(airportluggage(5,[10, 20, 15, 5, 16],15))
+print(airportluggage(4,[11, 12, 20, 100],10))
+
+output
+5
+7
+8
+
+
+##grid (no.of ways to reach from one point to another point)
+import math
+def paths(n,m,x,y):
+    n=n-1
+    m=m-1
+    x=x-1
+    y=y-1
+    t=math.factorial(n+m)/(math.factorial(n)*math.factorial(m))
+    l=math.factorial(x+y)/(math.factorial(x)*math.factorial(y))
+    r=math.factorial(n-x+m-y)/(math.factorial(n-x)*math.factorial(m-y))
+    s=l*r
+    return int(t-s)
+print(paths(2, 2, 2, 1))     
+print(paths(3, 3, 2, 2))     
+print(paths(4, 4, 2, 2))     
+print(paths(10, 10, 5, 5))
+
+n=rows
+m=columns
+
+
+output
+1
+2
+8
+30980
+
