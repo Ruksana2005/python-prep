@@ -1,0 +1,202 @@
+def frequency(s):
+    d={}
+    for i in s:
+        if i in d:
+            d[i]+=1
+        else:
+            d[i]=1
+    
+    sorted_val=dict(sorted(d.items(),key=lambda d:d[1],reverse=True))
+    print(sorted_val)
+frequency("engineering is fun")
+
+output
+{'n': 4, 'e': 3, 'i': 3, 'g': 2, ' ': 2, 'r': 1, 's': 1, 'f': 1, 'u': 1}
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+      Scanner scan = new Scanner(System.in);
+      String word = scan.nextLine();
+      System.out.println(word);
+      fun(word);
+  }
+  static void fun(String word){
+    int n = word.length();
+    HashMap<Character, Integer> map = new HashMap<>();
+    for(int i =0; i < n; i++){
+      char ch = word.charAt(i);
+      if( map.containsKey(ch) == false )
+      map.put(ch, 1);
+      else 
+      map.put(ch, map.get(ch)+1 );
+    }
+    System.out.println(map);
+    
+  }
+}
+engineering
+STDIN
+Output:
+
+engineering
+{r=1, e=3, g=2, i=2, n=3}
+
+
+def frequency(s):
+    d={}
+    for i in s:
+        if i in d:
+            d[i]+=1
+        else:
+            d[i]=1
+    sorted_val=dict(sorted(d.items(),key=lambda d:d[1],reverse=True))
+    print(sorted_val)
+    for ch,count in sorted_val.items():
+        print(ch,"->",count)
+    s1=""
+    for ch,count in sorted_val.items():
+        s1=s1+ch*count
+    print(s1)
+frequency("engineering")
+
+{'e': 3, 'n': 3, 'g': 2, 'i': 2, 'r': 1}
+e -> 3
+n -> 3
+g -> 2
+i -> 2
+r -> 1
+eeennnggiir
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+      String word = "engineering";
+      fun(word);
+  }
+  static void fun(String word){
+    int n = word.length();
+    
+    HashMap<Character, Integer> map = new HashMap<>();
+    for(int i =0; i < n; i++){
+      char ch = word.charAt(i);
+      if( map.containsKey(ch) == false)
+      map.put(ch, 1);
+      else 
+      map.put(ch, map.get(ch)+1);
+    }
+    System.out.println(map);
+    ArrayList<Map.Entry<Character, Integer>> list
+    = new ArrayList<>( map.entrySet() );
+    System.out.println(list);
+    
+    list.sort((e1, e2) -> e2.getValue().compareTo(e1.getValue()) );
+    System.out.println(list);
+    String s = "";
+    for(int i =0; i < list.size(); i++){
+      int m = list.get(i).getValue();
+      char che = list.get(i).getKey();
+      for(int j =0; j < m; j++)
+        s = s + che;
+    }
+    System.out.println(s);
+  }
+}
+
+Output:
+
+{r=1, e=3, g=2, i=2, n=3}
+[r=1, e=3, g=2, i=2, n=3]
+[e=3, n=3, g=2, i=2, r=1]
+eeennnggiir
+
+def star(s):
+    st=[]
+    k=0
+    for i in range(len(s)):
+        if s[i]!='*':
+            st.append(s[i])
+            k+=1
+        elif s[i]=='*':
+            del(st[k-1])
+            k-=1
+    print(st)
+    print(''.join(st))
+star("a*b*c")
+star("abc*d*e*fh")
+
+output
+['c']
+['a', 'b', 'f', 'h']
+abfh
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+      String word = "abc*d*e*fh*";
+      fun(word);
+  }
+  static void fun(String word){
+    Stack <Character> st=new Stack<>();
+    int n=word.length();
+    for(int i=0;i<n;i++){
+      char ch=word.charAt(i);
+      if (ch!='*'){
+        st.push(ch);
+      }
+      else{
+        if(!st.isEmpty()){
+          st.pop();
+        }
+      }
+    }
+    String s="";
+    while(!st.isEmpty()){
+      s=st.pop()+s;
+    }
+    System.out.println(s);
+  }
+}
+
+output
+abf
+
+import java.util.*;
+class Main{
+  public static void main(String args[]){
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    int[] arr=new int[2*n];
+    int[] narr=new int[2*n];
+    for(int i=0;i<2*n;i++){
+      arr[i]=sc.nextInt();
+    }
+    System.out.println(Arrays.toString(arr));
+    int i=0,j=0,k=0;
+    for(i=0;i<n;i++){
+        narr[k]=arr[i];
+        k++;
+        narr[k]=arr[n+j];
+        j++;
+        k++;
+      }
+      
+      System.out.println(Arrays.toString(narr));
+  }
+}
+
+output
+4
+10 20 30 40 1 2 3 4
+
+STDIN
+Output:
+
+[10, 20, 30, 40, 1, 2, 3, 4]
+[10, 1, 20, 2, 30, 3, 40, 4]
+
+
+
