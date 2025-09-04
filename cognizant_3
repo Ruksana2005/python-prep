@@ -1,0 +1,601 @@
+#longest common subarray of consecutive numbers
+def subarray(arr):
+    
+    k=0
+    arr=sorted(arr)
+    m=0
+    for i in range(len(arr)-1):
+        if arr[i]+1==arr[i+1]:
+            k+=1
+        else:
+            m=max(m,k+1)
+            k=0
+    m=max(m,k+1)
+    return m
+print(subarray([1,2,3,5,6,7,8,9,10,4,3,1,0]))
+print(subarray([1,2,3,7,8,9,10,16,100,101,200,201,202,205,11,12,13,14,15,]))
+
+output
+8
+10
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+      Scanner sc=new Scanner(System.in);
+      int n=sc.nextInt();
+      int[] arr=new int[n];
+      
+      int i,j,k=0,m=0;
+      for(i=0;i<n;i++){
+        arr[i]=sc.nextInt();
+      }
+      for(i=0;i<n;i++){
+        for(j=i+1;j<n;j++){
+          if(arr[i]>arr[j]){
+            int temp=arr[i];
+            arr[i]=arr[j];
+            arr[j]=temp;
+          }
+        }
+      }
+      System.out.println(Arrays.toString(arr));
+      for(i=0;i<n-1;i++){
+        if(arr[i]+1==arr[i+1]){
+          k++;
+        }
+        else{
+          m=Math.max(k+1,m);
+          
+          k=0;
+        }
+      }
+      m=Math.max(k+1,m);
+      System.out.println(m);
+      
+  }
+}
+
+output
+13
+1 2 3 5 6 7 8 9 10 4 3 1 0
+STDIN
+Output:
+
+[0, 1, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9, 10]
+8
+
+
+def xorcal(arr):
+    n=len(arr)
+    r=0
+    for i in range(len(arr)):
+        val=(i+1)*(n-i)
+        if val%2!=0:
+            r=r^arr[i]
+    return r
+print(xorcal([1,2,3]))
+print(xorcal([4,5,2,1,3]))
+
+output
+2
+5
+
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+      Scanner sc=new Scanner(System.in);
+      int n=sc.nextInt();
+      int res=0;
+      int[] arr=new int[n];
+     
+      for(int i=0;i<n;i++){
+        arr[i]=sc.nextInt();
+        int val=(i+1)*(n-i);
+        if(val%2!=0){
+          res=res^arr[i];
+        }
+        
+      }
+      System.out.println(res);
+      
+  }
+}
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+      Scanner scan = new Scanner(System.in);
+      int n = Integer.parseInt(scan.nextLine());
+      String input2 = scan.nextLine();
+      String[] names = input2.split(" ");
+      sort(names, n);
+      System.out.println(Arrays.toString(names));
+  }
+  static void sort(String[] names, int n){
+    // bubble sort 
+    int start =0, end = n-1;
+    for(int pass = 1; pass <= n; pass++)
+    {
+      for(int i = start; i < end; i++){
+        if( names[i].compareTo(names[i+1]) > 0 ){
+          // swap ith name with i+1th name 
+          String temp =  names[i];
+          names[i] = names[i+1];
+          names[i+1] = temp;
+        }
+      }
+      end = end -1;
+    }
+    return;
+  }
+}
+
+output
+5
+zaheer amala vijay milind mary
+STDIN
+Output:
+
+[amala, mary, milind, vijay, zaheer]
+
+##magic array count
+sum of all odd numbers in row wise and if the sum is even then increment the count as well the sum(even)
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+      Scanner sc=new Scanner(System.in);
+      int r,c,i,j,k=0;
+      r=sc.nextInt();
+      c=sc.nextInt();
+      int[][] arr=new int[r][c];
+      for(i=0;i<r;i++){
+        int s=0;
+        for(j=0;j<c;j++){
+          arr[i][j]=sc.nextInt();
+          if(arr[i][j]%2!=0){
+             s=s+arr[i][j];
+          }
+        }
+        
+        if(s%2==0){
+          k++;
+          System.out.println("s : "+s);
+          
+        }
+      }
+      for(i=0;i<r;i++){
+      System.out.println(Arrays.toString(arr[i]));
+        
+      }
+      System.out.println("count : "+k);
+  }
+}
+
+output
+ 
+3
+3
+1 2 3 4 5 6 7 8 9
+STDIN
+Output:
+
+s : 4
+s : 16
+[1, 2, 3]
+[4, 5, 6]
+[7, 8, 9]
+count : 2
+
+ 
+3
+2
+2 3 11 10 3 5
+STDIN
+Output:
+
+s : 8
+[2, 3]
+[11, 10]
+[3, 5]
+count : 1
+-------
+def magic(r,c,arr):
+    k=0
+    for i in range(r):
+        s=0
+        for j in range(c):
+            if arr[i][j]%2!=0:
+                s+=arr[i][j]
+        if s%2==0:
+            k+=1
+            print("s=",s)
+    return k
+print("count : ",magic(3,3,[[1,2,3],[4,5,6],[7,8,9]]))
+print("count : ",magic(3,2,[[2,3],[11,10],[3,5]]))
+
+output
+s= 4
+s= 16
+count :  2
+s= 8
+count :  1
+
+
+##sort the givn string and compare the given and sorted string if the charater position is changed then count them and print
+def swap(s):
+    r=''.join(sorted(s))
+    k=0
+    for i in range(len(s)):
+        if s[i]!=r[i]:
+            k+=1
+    return [k,r,s]
+print(swap("helco"))
+print(swap("afbs"))
+
+output
+[3, 'cehlo', 'helco']
+[2, 'abfs', 'afbs']
+
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+      Scanner sc=new Scanner(System.in);
+      String s=sc.nextLine();
+      int n=s.length();
+      int k=0;
+      char[] arr=s.toCharArray();
+      Arrays.sort(arr);
+      String s1=new String(arr);
+      System.out.println(s1);
+      for(int i=0;i<n;i++){
+        if(s.charAt(i)!=s1.charAt(i)){
+          k++;
+        }
+      }
+      System.out.println(Arrays.toString(arr));
+      System.out.println(k);
+    }
+}
+
+dabc
+STDIN
+Output:
+
+abcd
+[a, b, c, d]
+4
+
+## go one character before(decrypt)
+def decrypt(s):
+    s1=""
+    for i in range(len(s)):
+        if s[i]=='a':
+            s1=s1+'z'
+        elif s[i]=='A':
+            s1=s1+'Z'
+        else:
+            s1=s1+chr(ord(s[i])-1)
+    return s1
+print(decrypt("bcd"))
+print(decrypt("abc"))
+print(decrypt("zAZy"))
+
+output
+abc
+zab
+yZYx
+
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+      Scanner sc=new Scanner(System.in);
+      String s=sc.nextLine();
+      int n=s.length();
+      char[] arr=s.toCharArray();
+      for(int i=0;i<n;i++){
+        if(arr[i]=='a'){
+          arr[i]='z';
+        }
+        else if(arr[i]=='A'){
+          arr[i]='Z';
+        }
+        else{
+          arr[i]=(char)((int)arr[i]-1);
+        }
+      }
+      System.out.println(Arrays.toString(arr));
+      String s2=new String(arr);
+      System.out.println(s2);
+      
+  }
+}
+
+output
+Asnyaz
+STDIN
+Output:
+
+[Z, r, m, x, z, y]
+Zrmxzy
+
+
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+      Scanner sc=new Scanner(System.in);
+      int n1=sc.nextInt();
+      int cap=sc.nextInt();
+      int[] arr= new int[n1];
+      int s=0;
+      for(int i=0;i<n1;i++){
+        arr[i]=sc.nextInt();
+        if(isprime(arr[i])==true){
+          if(arr[i]>=cap) 
+          {
+            s=s+cap;
+            
+            System.out.println(arr[i]);
+          }
+        }
+      }
+      System.out.println(Arrays.toString(arr));
+      System.out.println(s);
+      
+  }
+  static boolean isprime(int n) {
+    if (n <= 1) return false;      // 0, 1 and negatives are not prime
+    if (n == 2) return true;       // 2 is prime
+    if (n % 2 == 0) return false;  // exclude even numbers > 2
+
+    for (int i = 3; i <= Math.sqrt(n); i += 2) {  // check only odd divisors
+        if (n % i == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+}
+
+output
+5
+3
+9 5 7 6 3
+
+STDIN
+Output:
+
+5
+7
+3
+[9, 5, 7, 6, 3]
+9
+
+
+##even_odd count without using mod operator
+def even_odd(arr):
+    e=0
+    o=0
+    for i in range(len(arr)):
+        if arr[i] & 1 ==0:
+            e+=1
+        else:
+            o+=1
+    return [e,o]
+print(even_odd([1,2,3,4,5]))
+
+output
+[2, 3]
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+      Scanner sc=new Scanner(System.in);
+      int n=sc.nextInt();
+      int[] arr=new int[n];
+      int e=0,o=0;
+      for(int i=0;i<n;i++){
+        arr[i]=sc.nextInt();
+        if((arr[i] & 1)==0){
+          e++;
+        }
+        else{
+          o++;
+        }
+      }
+      System.out.println("Even count :"+e);
+      System.out.println("Odd count :"+o);
+      
+  }
+}
+
+##maximum no of books person can read 
+def read(arr,n,m):
+    arr=sorted(arr)
+    k=0
+    s=0
+    for i in range(n):
+        if s+arr[i]<m:
+            s+=arr[i]
+            k+=1
+    return k
+print(read([4,2,3,1],4,5))
+
+output
+2
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+      Scanner sc=new Scanner(System.in);
+      int n,m,i,s=0,k=0;
+      n=sc.nextInt();
+      m=sc.nextInt();
+      int[] arr=new int[n];
+      for(i=0;i<n;i++){
+        arr[i]=sc.nextInt();
+      }
+      
+      Arrays.sort(arr);
+      System.out.println(Arrays.toString(arr));
+      for(i=0;i<n;i++){
+        if((s+arr[i])<=m){
+          s=s+arr[i];
+          k++;
+        }
+    
+      }
+      System.out.println("No.of books read :"+k);
+      System.out.println("Left over book :"+(n-k));
+      
+  }
+}
+
+output
+5
+7
+4 2 1 3 1
+STDIN
+Output:
+
+[1, 1, 2, 3, 4]
+No.of books read :4
+Left over book :1
+
+##chocolates to be distributed if the num %5==0 their adjacents will be given with 2 more extra otherwise according to their positions
+def choc(n):
+    s=0
+    k=0
+    for i in range(1,n+1):
+        s+=i
+        if i%5==0:
+            k+=1
+    s=s+4*k
+    return s
+print(choc(5))
+print(choc(3))
+print(choc(10))
+
+output
+19
+6
+63
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+      Scanner sc = new Scanner(System.in);
+      int n=sc.nextInt();
+      int s=0,k=0;
+      for (int i=1;i<n+1;i++){
+       
+          s=s+i;
+          if(i%5==0){
+            k++;
+          }
+        
+        
+      }
+      s=s+4*k;
+      System.out.println(s);
+    }
+}
+
+
+##rotations
+## m=no.of rotations
+def rotations(arr,n,m):
+    if m<n:
+        arr=arr[m:]+arr[:m]
+    return arr
+print(rotations([1,2,3,4,5],5,4))
+
+output
+[5,1,2,3,4]
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+      Scanner sc=new Scanner(System.in);
+      int n=sc.nextInt();
+      int m=sc.nextInt();
+      int[] arr=new int[n];
+      int[] narr=new int[n];
+      int i,k=0;
+      for(i=0;i<n;i++){
+        arr[i]=sc.nextInt();
+      }
+      for(i=m;i<n;i++){
+        narr[k]=arr[i];
+        k++;
+      }
+      for(i=0;i<m;i++){
+        narr[k]=arr[i];
+        k++;
+      }
+      System.out.println(Arrays.toString(narr));
+      
+  }
+}
+
+##kaprekar number
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+      Scanner scan = new Scanner(System.in);
+      int low =  scan.nextInt();
+      int high = scan.nextInt();
+      String s = fun(low, high);
+      System.out.print(s);
+  }
+  static String fun(int low, int high){
+    String s = "";
+    for(int i = low; i <= high; i++){
+      int d = String.valueOf(i).length();
+      int sqr = i*i;
+      String sqrStr = String.valueOf(sqr);
+      int ns = sqrStr.length();
+      
+      String leftStr = sqrStr.substring(0, ns-d);
+      String rightStr = sqrStr.substring(ns-d, ns);
+      int sum = 
+      Integer.parseInt(leftStr) + Integer.parseInt(rightStr);
+      if(sum == i) s = s + String.valueOf(i)+ " ";
+    }
+    return s;
+  }
+}
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+        
