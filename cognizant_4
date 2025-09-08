@@ -1,0 +1,112 @@
+def charcount(arr):
+    d={}
+    for word in arr:
+        for ch in word:
+            if ch in d:
+                d[ch]+=1
+            else:
+                d[ch]=1
+    l=list(d.values())
+    n=len(arr)
+    for i in range(len(l)):
+        if l[i]%n!=0:
+            return False
+    return True
+            
+print(charcount(["abc","bc","aabc"]))
+print(charcount(["aaa","bbb"]))
+print(charcount(["abc","bc","abc"]))
+
+output
+true
+false
+false
+
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+      Scanner scan = new Scanner(System.in);
+      int n = Integer.parseInt(scan.nextLine());
+      String[] strings =scan.nextLine().split(" ");
+      boolean res = fun(n, strings);
+      System.out.println(res);
+   }
+   static boolean fun(int n, String[] strings){
+     HashMap<Character, Integer> map = new HashMap<>();
+     for(int i =0; i < n; i++){
+       for(int j =0; j < strings[i].length(); j++){
+         char ch = strings[i].charAt(j);
+         if( map.containsKey(ch) == false)
+         map.put(ch, 1);
+         else 
+         map.put(ch, map.get(ch)+1);
+       }
+     }
+     //System.out.println(map);
+     //for(Map.Entry<Character, Integer> entry : map.entrySet() ){
+    // if (entry.getValue() != n) return false;
+     //}
+     for(char key : map.keySet()){
+       if( map.get(key) % n!=0) return false;
+     }
+     
+     return true;
+   }
+}              
+
+static int fun(int n, int[] arr, int X, double T)
+    {
+      int time = (int)(T *60);
+      int[] vel = new int[time+1];
+      int dist =0;
+      for(int i =1; i <= time; i++){
+        vel[i] = vel[i-1] + arr[X-1];
+        dist = dist + vel[i];
+      }
+      return dist;
+    }
+
+output
+4
+2 4 1 3
+2
+0.1
+STDIN
+Output:
+
+84
+
+
+def mismatch(n,s):
+    k=0
+    for i in range(len(s)//2):
+        if s[i]!=s[-(i+1)]:
+            k+=1
+    return k
+print(mismatch(5,"11101"))
+print(mismatch(6,"111001"))
+
+output
+1
+2
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+      Scanner sc=new Scanner(System.in);
+      int i,k=0;
+      int n=sc.nextInt();
+      String s=sc.next();
+      for(i=0;i<(int)n/2;i++){
+        if(s.charAt(i)!=s.charAt((n-i)-1)){
+          k++;
+        }
+      }
+      System.out.println(k);
+  }
+}
+
+
