@@ -201,6 +201,140 @@ Output:
 
 [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]
 
+ascii -- character 
+n=int(input())
+arr=list(map(int,input().split()))[:n]
+for i in range(len(arr)):
+    print(arr[i],chr(arr[i]))
+
+output
+4
+65 66 67 68
+65 A
+66 B
+67 C
+68 D
+
+115 s
+116 t
+101 e
+112 p
+
+##highest placement
+arr1=['cse','ece','mec']
+arr=list(map(int,input().split()))
+m=max(arr)
+s=sorted(arr)
+k=0
+t=0
+for i in range(len(s)-1):
+    if s[0]<0:
+        print("Data is invalid")
+        t=1
+        break
+    elif s[i]==s[i+1]:
+        k+=1
+if t==0:
+    if k==len(arr)-1:
+        print("None")
+    else:
+        print("Highest Placement recieved departments")
+        for i in range(len(arr)):
+            if(arr[i]==m):
+                print(arr1[i])
+
+output
+75 90 20
+Highest Placement recieved departments
+ece
+
+##months  --  seasons
+n=int(input())
+if n in [3,4,5]:
+    print("Spring")
+elif n in [6,7,8]:
+    print("Summer")
+elif n in [9,10,11]:
+    print("Autumn")
+elif n in [12,1,2]:
+    print("Winter")
+else:
+    print("Invalid")
+
+output
+5
+Spring
+
+#factors
+n=abs(int(input()))
+if n==0:
+    print("No Factors")
+else:
+    for i in range(1,n+1):
+        if n%i==0:
+            print(i,end=" ")
+
+output
+54
+1 2 3 6 9 18 27 54 
+
+#minimum discount things to be printed 
+n=int(input())
+l=[]
+for i in range(n):
+    l1=input().split(",")
+    l.append(l1)
+m=float('inf')
+r=[]
+for i in range(len(l)):
+    r.append((int(l[i][1])*int(l[i][2]))/100)
+    if m>=(int(l[i][1])*int(l[i][2]))/100:
+        m=(int(l[i][1])*int(l[i][2]))/100
+for i in range(len(r)):
+  if r[i]==m:
+    print(l[i][0])
+
+output
+4
+Mobile,5000,10
+shoe,5000,10
+WATCH,5000,10
+Laptop,5000,10
+STDIN
+Output:
+
+Mobile
+shoe
+WATCH
+Laptop
+
+4
+mobile,10000,20
+shoe,5000,10
+watch,6000,15
+laptop,35000,5
+STDIN
+Output:
+
+shoe
+
+##checking whether s is present in arr or not
+n=int(input())
+if n<=0:
+  print("Invalid Range")
+else:
+  arr=input().split(" ")
+  s=input()
+  if s in arr:
+    print(s,"is available")
+  else:
+    print(s,"is not available")
+
+
+
+
+
+
 
 
 
