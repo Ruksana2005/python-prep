@@ -1,3 +1,25 @@
+##find the indices of the 2 numbers whose sum is target
+
+arr=list(map(int,input().split(',')))
+target=int(input())
+arr1=sorted(arr)
+n=len(arr)
+i=0
+j=n-1
+k=0
+while(i<j):
+  if arr1[i]+arr1[j]==target:
+    print([arr.index(arr1[i]),arr.index(arr1[j])])
+    k=1
+    break
+  elif arr1[i]+arr1[j]>target:
+    j-=1
+  else:
+    i+=1
+if k==0:
+  print("-1")
+
+
 
 import java.util.*;
 
