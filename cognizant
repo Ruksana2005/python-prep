@@ -1,0 +1,115 @@
+##length of the longest substring without repeating the characters
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        sts=set(s)
+        if len(sts)==len(s):
+            return len(s)
+        else:
+            l1=[]
+            l2=[]
+            max_length=0
+            for i in range(len(s)):
+                n=len(l2)
+                while s[i] in l2 and l2!=[]:
+                    
+                    del(l2[0])
+                    n-=1
+                if s[i] not in l2:
+                    l2.append(s[i])
+                l1.append(len(l2))
+                
+            return max(l1)
+
+
+##horners rule
+##a+bx+cx**2+dx**3+...
+n=int(input())
+l=list(map(int,input().split()))
+x=int(input())
+t=0
+for i in range(len(l)):
+  t=t+l[i]*(x**i)
+print(t)
+
+##nearest primes
+import math
+def isprime(n):
+  if n==2:
+    return True
+  elif n<2 or n%2==0:
+    return False
+  else:
+    for i in range(3,int(math.sqrt(n))+1,2):
+      if n%i==0:
+        return False
+    return True
+    
+def nearest_prime(n):
+  if n<1:
+    return -1
+  elif isprime(n):
+    return n
+  else:
+    arr=[]
+    l=n-1
+    r=n+1
+    while True:
+      if isprime(l):
+        arr.append(l)
+        l=0
+      else:
+        l-=1
+      
+      if isprime(r):
+        arr.append(r)
+        r=0
+      else:
+        r+=1
+      if len(arr)==2:
+        break
+    return arr
+      
+print(nearest_prime(68))
+      
+
+ ##digit sum==9 
+l=list(map(int,input().split()))
+arr=[]
+for i in range(len(l)):
+  length=len(str(l[i]))
+  x=l[i]
+  while length>1:
+    l2=[int(i) for i in str(l[i])]
+    n=sum(l2)
+    length=len(str(n))
+    l[i]=sum(l2)
+  if n==9:
+    arr.append(x)
+print(arr)
+
+
+##nth prime
+import math
+def isprime(n):
+  if n==2:
+    return True
+  elif n<2 or n%2==0:
+    return False
+  else:
+    for i in range(3,int(math.sqrt(n))+1,2):
+      if n%i==0:
+        return False
+    return True
+
+n=int(input())
+arr=[2]
+i=3
+while True:
+  if i%2!=0:
+    if isprime(i):
+      arr.append(i)
+    i+=2
+  if len(arr)==n:
+    print(arr[-1])
+    break
+
